@@ -2,3 +2,10 @@ extends layout
 
 block content
   h1 My todos
+  label(for="input-name") Add your name: 
+  input(type="text" id="input-name")
+  br
+  label(for="input-task") Add task: 
+  input(type="text" id="input-task")
+  br
+  button(id="submit-data") Submit
