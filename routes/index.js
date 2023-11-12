@@ -19,6 +19,5 @@ router.post('/todo', function(req, res) {
     foundUser.todos.push(req.body.todos);
     res.send("Todo added");
   }
-  console.log(users);
 })
 module.exports = router;
