@@ -13,11 +13,11 @@ router.post('/todo', function(req, res) {
   if (index == -1) {
     let user = {"name": req.body.name, "todos": [req.body.todos] }
     users.push(user);
-    res.send({"text": "User added"});
+    res.send("User added");
   } else {
     let foundUser = users[index];
     foundUser.todos.push(req.body.todos);
-    res.send({"text": "Todo added"});
+    res.send("Todo added");
   }
   console.log(users);
 })

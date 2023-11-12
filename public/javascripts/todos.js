@@ -11,8 +11,8 @@ window.onload = function() {
            }, 
            body: '{"name": "' + inputName.value + '", "todos": "' + inputTask.value + '"}'
            })
-           .then(results => results.json())
-           .then(console.log)        
+           //.then(results => results.json())
+           //.then(console.log)        
    
        }
     })
