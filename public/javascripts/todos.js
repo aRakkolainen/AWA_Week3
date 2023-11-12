@@ -24,7 +24,7 @@ window.onload = function() {
 
     searchBtn.addEventListener("click", async () => {
         if (inputSearch.value != null) {
-            let url = "http://localhost:3000/user/" + (inputSearch.value).toLowerCase();
+            let url = "http://localhost:3000/user/" + (inputSearch.value);
             let searchResponse = await fetch(url);
             let json = await searchResponse.json();
             let searchResult = json.result; 

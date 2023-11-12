@@ -34,4 +34,6 @@ router.get('/user/:id', function(req, res) {
     res.send({"result": users[i]});
   }
 })
+
+router.delete("/user/:id")
 module.exports = router;
