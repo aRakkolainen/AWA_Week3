@@ -20,4 +20,18 @@ router.post('/todo', function(req, res) {
     res.send("Todo added");
   }
 })
+
+router.get('/user/:id', function(req, res) {
+  let temp = req.params.id; 
+  // Capitalizing the first letter of a string: https://flexiple.com/javascript/javascript-capitalize-first-letter
+  let searchedUser = temp.charAt(0).toUpperCase() + temp.slice(1);
+  let i= users.findIndex(u => u.name === searchedUser);
+  //User was not found!
+  if (i == -1) {
+    res.send({"result": "User not found."});
+  } else {
+    //User is found 
+    res.send({"result": users[i]});
+  }
+})
 module.exports = router;
