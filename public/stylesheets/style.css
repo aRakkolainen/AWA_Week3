@@ -9,5 +9,9 @@ a {
 
 button#delete-user {
   display: None;
-  
+
+}
+button.delete-task {
+  border: none;
+  background-color: white;  
 }

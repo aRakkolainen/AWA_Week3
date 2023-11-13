@@ -16,8 +16,7 @@ window.onload = function() {
            "Content-type": "application/json"
            }, 
            body: '{"name": "' + inputName.value + '", "todos": "' + inputTask.value + '"}'
-           })
-           ;
+           });
            let text = await response.text(); 
            resultText.innerText = text;
            
@@ -36,7 +35,29 @@ window.onload = function() {
                 deleteBtn.style.display="none";
                 //User is found and received as JSON object: 
             } else if (typeof(searchResult) == "object") {
-                searchResultText.innerText = "Found the user " + searchResult.name + " with following todos: " + searchResult.todos;
+                searchResultText.innerText = "Found the user " + searchResult.name + " with following todos: ";
+                let todos = searchResult.todos; 
+                let todosList = document.getElementById("todos");
+                todos.forEach(todo => {
+                    let todoItem = document.createElement("li");
+                    todoItem.setAttribute("class", "delete-task");
+                    let todoButton = document.createElement("button");
+                    todoButton.innerText = todo; 
+                    todoItem.appendChild(todoButton);
+                    todosList.appendChild(todoItem);
+                    todoButton.addEventListener("click", async () => {
+                        let response = await fetch("http://localhost:3000/user/", {method: "PUT", 
+                        headers: {
+                            "Content-type": "application/json"
+                        },
+                        body: '{"name": "' + inputSearch.value + '", "todo": "' + todo + '"}'
+                    })
+                    let todoResult = await response.text(); 
+                    if (todoResult == "Task deleted") {
+                        todoItem.style.display = "none";
+                    }
+                })
+            });
                 deleteBtn.style.display="inline";
             }
         }
@@ -48,8 +69,11 @@ window.onload = function() {
         let deleteUrl = "http://localhost:3000/user/" + (inputSearch.value); 
         let response = await fetch(deleteUrl, {method: "DELETE"})
         let deletionResult = await response.text();
-        deleteResult.innerText = deletionResult; 
+        deleteResult.innerText = deletionResult;
+        console.log(deletionResult); 
     })
+
+
 
 
 }

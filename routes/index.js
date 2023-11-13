@@ -56,5 +56,23 @@ router.delete("/user/:id", function(req, res) {
     res.send("User deleted");
   }
 
-}) 
+})
+
+router.put("/user", function(req, res) {
+  let name = req.body.name; 
+  let todo = req.body.todo;
+  let i= users.findIndex(u => u.name === name);
+  if (i == -1) {
+    res.send("User not found");
+  } else {
+    let todos = users[i].todos; 
+    for (let j=0; j < todos.length; j++) {
+      if (todos[j] == todo) {
+        todos.splice(j, 1);
+        res.send("Task deleted");
+      }
+    }    
+  }
+})
+
 module.exports = router;
