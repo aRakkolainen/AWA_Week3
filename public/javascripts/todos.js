@@ -8,6 +8,7 @@ window.onload = function() {
     const searchResultText = document.getElementById("search-result");
     const deleteBtn = document.getElementById("delete-user");
     const deleteResult = document.getElementById("delete-result");
+    const todoResult = document.getElementById("todo-result");
     submitBtn.addEventListener("click", async () => {
         if (inputName.value != null && inputTask.value != null) {
             // Sending POST request: https://www.youtube.com/watch?v=xJAxjstgITk
@@ -52,10 +53,11 @@ window.onload = function() {
                         },
                         body: '{"name": "' + inputSearch.value + '", "todo": "' + todo + '"}'
                     })
-                    let todoResult = await response.text(); 
-                    if (todoResult == "Task deleted") {
-                        todoItem.style.display = "none";
+                    let todoText = await response.text(); 
+                    if (todoText == "Task deleted") {
+                        todoItem.style.display = "none"; 
                     }
+                    todoResult.innerText = todoText; 
                 })
             });
                 deleteBtn.style.display="inline";
