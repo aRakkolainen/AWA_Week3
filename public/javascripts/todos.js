@@ -7,6 +7,7 @@ window.onload = function() {
     const searchBtn = document.getElementById("search");
     const searchResultText = document.getElementById("search-result");
     const deleteBtn = document.getElementById("delete-user");
+    const deleteResult = document.getElementById("delete-result");
     submitBtn.addEventListener("click", async () => {
         if (inputName.value != null && inputTask.value != null) {
             // Sending POST request: https://www.youtube.com/watch?v=xJAxjstgITk
@@ -32,6 +33,7 @@ window.onload = function() {
             //Case when user is not found: 
             if (typeof(searchResult) == "string") {
                 searchResultText.innerText = searchResult
+                deleteBtn.style.display="none";
                 //User is found and received as JSON object: 
             } else if (typeof(searchResult) == "object") {
                 searchResultText.innerText = "Found the user " + searchResult.name + " with following todos: " + searchResult.todos;
@@ -41,10 +43,12 @@ window.onload = function() {
 
         }
     )
-    deleteBtn.addEventListener("click", () => {
+    deleteBtn.addEventListener("click", async () => {
         console.log("Trying to delete user " + inputSearch.value);
         let deleteUrl = "http://localhost:3000/user/" + (inputSearch.value); 
-        fetch(deleteUrl, {method: "DELETE"})
+        let response = await fetch(deleteUrl, {method: "DELETE"})
+        let deletionResult = await response.text();
+        deleteResult.innerText = deletionResult; 
     })
 
 
