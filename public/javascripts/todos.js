@@ -54,9 +54,9 @@ window.onload = function() {
                         body: '{"name": "' + inputSearch.value + '", "todo": "' + todo + '"}'
                     })
                     let todoText = await response.text(); 
-                    if (todoText == "Task deleted") {
+                    /*if (todoText == "Task deleted") {
                         todoItem.style.display = "none"; 
-                    }
+                    }*/
                     todoResult.innerText = todoText; 
                 })
             });
