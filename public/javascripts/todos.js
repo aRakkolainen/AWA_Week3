@@ -47,16 +47,16 @@ window.onload = function() {
                     todoItem.appendChild(todoButton);
                     todosList.appendChild(todoItem);
                     todoButton.addEventListener("click", async () => {
-                        let response = await fetch("http://localhost:3000/user/", {method: "PUT", 
+                        let response = await fetch("http://localhost:3000/user", {method: "PUT", 
                         headers: {
                             "Content-type": "application/json"
                         },
                         body: '{"name": "' + inputSearch.value + '", "todo": "' + todo + '"}'
                     })
                     let todoText = await response.text(); 
-                    /*if (todoText == "Task deleted") {
+                    if (todoText == "Task deleted") {
                         todoItem.style.display = "none"; 
-                    }*/
+                    }
                     todoResult.innerText = todoText; 
                 })
             });
