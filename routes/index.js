@@ -71,7 +71,6 @@ router.put("/user", (req, res) => {
         todos.splice(j, 1);
         res.send("Task deleted");
       }
-      else res.send("User not found");
     }    
   }
 })
