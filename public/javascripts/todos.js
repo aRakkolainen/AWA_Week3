@@ -40,12 +40,12 @@ window.onload = function() {
                 let todos = searchResult.todos; 
                 let todosList = document.getElementById("todos");
                 todos.forEach(todo => {
-                    let todoItem = document.createElement("li");
-                    todoItem.setAttribute("class", "delete-task");
+                    //let todoItem = document.createElement("li");
+                    //todoItem.setAttribute("class", "delete-task");
                     let todoButton = document.createElement("button");
+                    todoButton.setAttribute("class", "delete-task");
                     todoButton.innerText = todo; 
-                    todoItem.appendChild(todoButton);
-                    todosList.appendChild(todoItem);
+                    todosList.appendChild(todoButton);
                     /*todoButton.addEventListener("click", async () => {
                         let response = await fetch("http://localhost:3000/user", {method: "PUT", 
                         headers: {
@@ -69,7 +69,7 @@ window.onload = function() {
             .then((response) => response.text())
             .then((todoText) => {
                 if (todoText == "Task deleted") {
-                    todoItem.style.display = "none"; 
+                    todoButton.style.display = "none"; 
                 }
                 todoResult.innerText = todoText;
             })
