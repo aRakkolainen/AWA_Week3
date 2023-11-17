@@ -46,7 +46,7 @@ window.onload = function() {
                     todoButton.innerText = todo; 
                     todoItem.appendChild(todoButton);
                     todosList.appendChild(todoItem);
-                    todoButton.addEventListener("click", async () => {
+                    /*todoButton.addEventListener("click", async () => {
                         let response = await fetch("http://localhost:3000/user", {method: "PUT", 
                         headers: {
                             "Content-type": "application/json"
@@ -58,7 +58,24 @@ window.onload = function() {
                         todoItem.style.display = "none"; 
                     }
                     todoResult.innerText = todoText; 
+                })*/
+                todoButton.addEventListener("click", () => {
+                    let response = fetch("http://localhost:3000/user", {method: "PUT", 
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: '{"name": "' + inputSearch.value + '", "todo": "' + todo + '"}'
+            })
+            .then((response) => response.text())
+            .then((todoText) => {
+                if (todoText == "Task deleted") {
+                    todoItem.style.display = "none"; 
+                }
+                todoResult.innerText = todoText;
+            })
                 })
+
+
             });
                 deleteBtn.style.display="inline";
             }
@@ -66,6 +83,8 @@ window.onload = function() {
 
         }
     )
+
+
     deleteBtn.addEventListener("click", async () => {
         console.log("Trying to delete user " + inputSearch.value);
         let deleteUrl = "http://localhost:3000/user/" + (inputSearch.value); 
